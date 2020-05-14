@@ -24,12 +24,12 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private TokenStore tokenStore;
     //资源ID
-    private static final String RESOURCE_ID ="oder";
+    private static final String RESOURCE_ID ="res1";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.resourceId(RESOURCE_ID)//资源 id
-                   .tokenStore(tokenStore)
+                   .tokenStore(tokenStore)//验证令牌
               // .tokenServices(tokenService())//验证令牌的服务
                 .stateless(true);
     }
@@ -37,7 +37,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        .antMatchers("/**").access("#oauth2.hasScope('all')")
+        .antMatchers("/**").access("#oauth2.hasScope('ROLE_API')")
         .and().csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//基于token 不记录session
     }

@@ -1,5 +1,6 @@
 package com.it.security.zy.service;
 
+import com.alibaba.fastjson.JSON;
 import com.it.security.zy.dao.UserDao;
 import com.it.security.zy.model.UserDto;
 import org.apache.commons.lang.StringUtils;
@@ -37,7 +38,7 @@ public class UserDetailService implements UserDetailsService {
         permissions.add("p2");
 
         String[] ss = permissions.toArray(new String[permissions.size()]);
-        UserDetails userDetails = User.withUsername(userDto.getUsername()).password(userDto.getPassword()).authorities(ss).build();
+        UserDetails userDetails = User.withUsername(JSON.toJSONString(userDto)).password(userDto.getPassword()).authorities(ss).build();
         return userDetails;
     }
 }

@@ -1,20 +1,20 @@
-package com.it.security.zy;
+package com.it.zy.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
  * @author zouyu
  * @description
- * @date 2020/5/12
+ * @date 2020/5/13
  */
 @SpringBootApplication
+@EnableZuulProxy
 @EnableDiscoveryClient
-@EnableHystrix
-public class zyServer {
+public class gatewayServer {
     public static void main(String[] args) {
-        SpringApplication.run(zyServer.class,args);
+        SpringApplication.run(gatewayServer.class,args);
     }
 }
